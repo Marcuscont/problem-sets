@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
+##### DESCRIPTION:
 # https://www.codewars.com/kata/52bb6539a4cf1b12d90005b7/train/python
 # Kata 3kuy
+#
 # BATTLESHIPS or Sea Battle
 #     Write a method that takes a field for well-known board game "Battleship"
 #     as an argument and returns true if it has a valid disposition of ships,
@@ -25,7 +27,8 @@
 #          neither by edge nor by corner.
 #    If you're interested in more information about the game, visit this link:
 #        http://en.wikipedia.org/wiki/Battleship_(game)
-## NOTES:
+#
+##### NOTES:
 # HOLA! I spent a lot of time debugging when I decided to implement the
 #      second version of the validate_ships () function to check ships.
 #
@@ -62,7 +65,7 @@ battleField =[ [ [1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
                [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
                [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] ] ]
-'''
+
 [1, 0, 0, 0, 0, 1, 1, 0, 0, 0]
 [1, 0, 1, 0, 0, 0, 0, 0, 1, 0]
 [1, 0, 1, 0, 1, 1, 1, 0, 1, 0]
@@ -106,9 +109,10 @@ battleField =[ [ [1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
 [0, 1, 0, 0, 0, 1, 0, 1, 0, 0]
 [0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 [0, 0, 0, 0, 1, 1, 1, 0, 0, 1]]
-'''
 
+###################################################################################
 # The first step is to check the field
+###################################################################################
 def validate_field(field):
     for y in range(len(field)):
         for x in range(len(field[y])):
@@ -149,8 +153,10 @@ def validate_field(field):
                 if (expOne or expTwo) and (expThree or expFour):
                     return False
     return True
-
-
+###################################################################################
+# FOR VALIDATION SHIPS  old version
+# saved for testing
+###################################################################################
 def validate_ships_ver01(fieldz):
     ships = {'submarines': 0, 'destroyers': 0,
              'cruisers': 0, 'battleship': 0}
@@ -185,12 +191,17 @@ def validate_ships_ver01(fieldz):
                     ships['cruisers'] += 1
                 elif size == 4:
                     ships['battleship'] += 1
+                    
     return ships['submarines'] == 4 and ships['destroyers'] == 3 \
        and ships['cruisers'] == 2 and ships['battleship'] == 1
-# But i thought i would just get the sum <of arrays>
+
+ 
+###################################################################################  
+# FOR VALIDATION SHIPS
+# I thought i would just get the sum <of arrays>
 # and compare against the checksum.
 # This seems to be a simpler solution
-#  Look below:
+#  Look below: ####################################################################
 def validate_ships_ver02(fieldz):
     BATTLESHIP = 4 * 1
     CRUISER    = 3 * 2
@@ -205,15 +216,20 @@ def validate_ships_ver02(fieldz):
     return s == checksum
 #Ya :)
 
+###################################################################################
 #  I implimented two functions for testing
-# ONE
+#  This is ONE
+###################################################################################
 def validate_battlefield01(field):
     if not validate_field(field):
         return False
     if not validate_ships_ver01(field):
         return False
     return True
-# and TWO
+
+###################################################################################
+# and TWO is here
+###################################################################################
 def validate_battlefield02(field):
     if not validate_field(field):
         return False
@@ -221,7 +237,9 @@ def validate_battlefield02(field):
         return False
     return True
 
-#Let's go
+#----------------------------------------------------------------------------------
+#   Let's go
+#----------------------------------------------------------------------------------
 if __name__ == "__main__":
     for i in battleField:
         print(validate_battlefield01(i))
